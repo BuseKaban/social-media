@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require("baglanti.php");
 
 $foto_klasor = "uploads/";
@@ -15,7 +16,7 @@ else{
     echo "yüklenemedi";
 }
 
-$sorgu = "INSERT INTO `post`(`user_id`, `url`) VALUES (3,'".$_FILES["img"]["name"]."')";
+$sorgu = "INSERT INTO `post`(`user_id`, `url`) VALUES ('".$_SESSION["id"]."','".$_FILES["img"]["name"]."')";
 
 if($baglan){
     $success = mysqli_query($baglan,$sorgu);
@@ -27,6 +28,4 @@ if($baglan){
         echo "Omadı";
     }
 }
-
-
 ?>

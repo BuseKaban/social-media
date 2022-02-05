@@ -1,50 +1,39 @@
 <?php
+session_start();
 include("head.php");
 require("baglanti.php");
 
-if($baglan){
-    $sorgu= "select * from post ";
-    $result = mysqli_query($baglan,$sorgu);
+if ($baglan) {
+    $sorgu = "SELECT post.*, count(likes.post_id) as begeni FROM `post` left join likes on post.id = likes.post_id
+    group by post.id";
+    $result = mysqli_query($baglan, $sorgu);
 
-    foreach($result as $row){
-        
-       
-        
-        echo "<img class='center-cropped' src='uploads/".$row["url"]."'>";
-        
+    foreach ($result as $row) {
+        echo $row["user_id"]. "<br>";
+        echo "<img class='center-cropped' src='uploads/" . $row["url"] . "'>  <br>"; 
+        echo $row["begeni"]. "<br>";
+        echo "<button class='like' value ='".$row["id"]."'>Like</button>" ;
     }
 }
+
 ?>
 
 <script>
     $(document).ready(function(){
-            $("#login_button").click(function(){
-            $.post("like.php",{
-                username : $("#username").val(),
-                password : $("#password").val()
-            },function(data,status){
+        $(".like").click(function(){
+            $.post("like.php",
+            {
+                post_id : $(this).val()
+            },
+            function(data,status){
                 console.log(data);
             });
-        });
 
         });
+    });
 </script>
 
-    <style>
-        .center-cropped {
-            object-fit: cover; 
-            object-position: center; 
-            height: 400px;
-            width: 400px;
-            align-self: center;
-        }
-    </style>
-
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="img" id="img">
-        <input type="submit" value="buton" name="submit">
-
-    </form>
-    
-    
-
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="img" id="img">
+    <input type="submit" value="buton" name="submit">
+</form>
