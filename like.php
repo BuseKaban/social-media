@@ -1,14 +1,14 @@
 <?php
-
+session_start();
 require("baglanti.php");
 
 
-$sorgu = "INSERT INTO `likes`(`user_id`, `post_id`) VALUES (3,'".$_POST["post"]."')";
+$sorgu = "INSERT INTO `likes`(`user_id`, `post_id`) VALUES ('".$_SESSION["id"]."','".$_POST["post_id"]."')";
 
 if($baglan){
     $success = mysqli_query($baglan,$sorgu);
 
-    $sorgu ="SELECT COUNT(*) as toplam from likes where post_id = '".$_POST["post"]."'";
+    $sorgu ="SELECT COUNT(*) as toplam from likes where post_id = '".$_POST["post_id"]."'";
 
     $result = mysqli_query($baglan,$sorgu);
     
