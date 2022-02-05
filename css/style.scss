@@ -2,7 +2,39 @@
     object-fit: cover;
     object-position: center;
     height: 400px;
-    width: 400px;
+    width: 100%;
     align-self: center;
 }
 
+.PostContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content : center;
+    align-items: stretch;
+    align-content: center;
+    width: 65%;
+    background-color: #2f1d58;
+    height: 540px;
+    overflow: auto;
+    flex-direction: column;
+    color: white;
+    margin-bottom: 10px;
+
+        .User{
+            padding: 10px;
+        }
+
+        .PostInfo{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: row;
+            padding: 10px;
+            
+        }
+}
+
+.like{
+    background-color: #3F48CC;
+}
