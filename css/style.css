@@ -24,7 +24,7 @@
           align-items: stretch;
   -ms-flex-line-pack: center;
       align-content: center;
-  width: 65%;
+  width: 400px;
   background-color: #2f1d58;
   height: 540px;
   overflow: auto;
